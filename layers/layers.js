@@ -1,4 +1,15 @@
-var wms_layers = [];
+// إضافة خريطة الأساس العالمية بشكل آمن لكي لا تظهر الخلفية بيضاء
+var lyr_OSM_0 = new ol.layer.Tile({
+    'title': 'OpenStreetMap',
+    'type': 'base',
+    'opacity': 1.000000,
+    source: new ol.source.XYZ({
+        attributions: ' ',
+        url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+    })
+});
+
+var wms_layers = [lyr_OSM_0]; // تفعيل الخريطة الأساسية هنا
 
 var format_Building_0 = new ol.format.GeoJSON();
 var features_Building_0 = format_Building_0.readFeatures(json_Building_0, 
@@ -202,7 +213,10 @@ var lyr_Church_7 = new ol.layer.Vector({
             });
 
 lyr_Building_0.setVisible(true);lyr_Jointplanning_1.setVisible(true);lyr_Roads_2.setVisible(true);lyr_Publicfacilities_3.setVisible(true);lyr_Mosques_4.setVisible(true);lyr_shops_5.setVisible(true);lyr_Archaeologicalsites_6.setVisible(true);lyr_Church_7.setVisible(true);
-var layersList = [lyr_Building_0,lyr_Jointplanning_1,lyr_Roads_2,lyr_Publicfacilities_3,lyr_Mosques_4,lyr_shops_5,lyr_Archaeologicalsites_6,lyr_Church_7];
+
+// إضافة الخريطة الأساسية إلى القائمة لكي تظهر في الخلفية
+var layersList = [lyr_OSM_0,lyr_Building_0,lyr_Jointplanning_1,lyr_Roads_2,lyr_Publicfacilities_3,lyr_Mosques_4,lyr_shops_5,lyr_Archaeologicalsites_6,lyr_Church_7];
+
 lyr_Building_0.set('fieldAliases', {'fid': 'fid', 'OBJECTID': 'OBJECTID', 'LayerName_': 'LayerName_', 'LayerNam_1': 'LayerNam_1', 'YearOfCapt': 'YearOfCapt', 'ValueName_': 'ValueName_', 'ValueNam_1': 'ValueNam_1', 'CommunityN': 'CommunityN', 'Communit_1': 'Communit_1', 'Governorat': 'Governorat', 'Governor_1': 'Governor_1', 'Ref_MOLG': 'Ref_MOLG', 'Ref_B': 'Ref_B', 'Communit_2': 'Communit_2', 'Communit_3': 'Communit_3', 'Governor_2': 'Governor_2', 'Governor_3': 'Governor_3', 'SHAPE_Leng': 'SHAPE_Leng', 'SHAPE_Area': 'SHAPE_Area', });
 lyr_Jointplanning_1.set('fieldAliases', {'fid': 'fid', 'OBJECTID': 'OBJECTID', 'LayerName_': 'LayerName_', 'LayerNam_1': 'LayerNam_1', 'CommunityN': 'CommunityN', 'Communit_1': 'Communit_1', 'BelnogsTo_': 'BelnogsTo_', 'Governorat': 'Governorat', 'Governor_1': 'Governor_1', 'PCBS_CO': 'PCBS_CO', 'Population': 'Population', 'Classifica': 'Classifica', 'Rank': 'Rank', 'Joint_Plan': 'Joint_Plan', 'Area_Land_': 'Area_Land_', 'Communit_2': 'Communit_2', 'Communit_3': 'Communit_3', 'Governor_2': 'Governor_2', 'Governor_3': 'Governor_3', 'AreaText_a': 'AreaText_a', 'AreaText_E': 'AreaText_E', 'Shape_Leng': 'Shape_Leng', 'Shape_Area': 'Shape_Area', });
 lyr_Roads_2.set('fieldAliases', {'fid': 'fid', 'OBJECTID': 'OBJECTID', 'N_of_the_R': 'N_of_the_R', 'LayerName_': 'LayerName_', 'LayerNam_1': 'LayerNam_1', 'Classifica': 'Classifica', 'Classifi_1': 'Classifi_1', 'RoadType_A': 'RoadType_A', 'RoadType_E': 'RoadType_E', 'Shape__Len': 'Shape__Len', 'Shape__L_1': 'Shape__L_1', 'Shape__L_2': 'Shape__L_2', });
@@ -217,7 +231,7 @@ lyr_Roads_2.set('fieldImages', {'fid': 'TextEdit', 'OBJECTID': 'TextEdit', 'N_of
 lyr_Publicfacilities_3.set('fieldImages', {'fid': 'TextEdit', 'OBJECTID': 'TextEdit', 'name': 'TextEdit', 'type': 'TextEdit', 'LayerName_': 'TextEdit', 'LayerNam_1': 'TextEdit', });
 lyr_Mosques_4.set('fieldImages', {'fid': 'TextEdit', 'OBJECTID': 'TextEdit', 'Governorat': 'TextEdit', 'CommunityN': 'TextEdit', 'Commercial': 'TextEdit', 'Economic_A': 'TextEdit', 'x': 'TextEdit', 'y': 'TextEdit', 'LayerName_': 'TextEdit', 'LayerNam_1': 'TextEdit', 'image_path': 'ExternalResource', });
 lyr_shops_5.set('fieldImages', {'full_id': 'TextEdit', 'osm_id': 'TextEdit', 'osm_type': 'TextEdit', 'shop': 'TextEdit', 'female': 'TextEdit', 'name_tr': 'TextEdit', 'street_ven': 'TextEdit', 'name_it': 'TextEdit', 'name_pl': 'TextEdit', 'start_date': 'TextEdit', 'contact_we': 'TextEdit', 'name_he': 'TextEdit', 'addr_stree': 'TextEdit', 'addr_str_1': 'TextEdit', 'website': 'TextEdit', 'operator': 'TextEdit', 'email': 'TextEdit', 'phone': 'TextEdit', 'opening_ho': 'TextEdit', 'internet_a': 'TextEdit', 'addr_str_2': 'TextEdit', 'addr_house': 'TextEdit', 'name_en': 'TextEdit', 'addr_city': 'TextEdit', 'name_ar': 'TextEdit', 'name': 'TextEdit', });
-lyr_Archaeologicalsites_6.set('fieldImages', {'fid': 'TextEdit', 'OBJECTID': 'TextEdit', 'LayerName_': 'TextEdit', 'LayerNam_1': 'TextEdit', 'Archaeolog': 'TextEdit', 'Archaeol_1': 'TextEdit', 'SiteName_A': 'TextEdit', 'SiteName_E': 'TextEdit', 'Archaeol_2': 'TextEdit', 'Archaeol_3': 'TextEdit', 'Region_Ara': 'TextEdit', 'Region_Eng': 'TextEdit', 'East__X_': 'TextEdit', 'North__Y_': 'TextEdit', 'Image path': 'ExternalResource', });
+lyr_Archaeologicalsites_6.set('fieldImages', {'fid': 'TextEdit', 'OBJECTID': 'TextEdit', 'LayerName_': 'TextEdit', 'LayerNam_1': 'TextEdit', 'Archaeolog': 'TextEdit', 'Archaeol_1': 'TextEdit', 'SiteName_A': 'TextEdit', 'SiteName_E': 'TextEdit', 'Archaeol_2': 'TextEdit', 'Archaeol_3': 'TextEdit', 'Region_Ara': 'Region_Ara', 'Region_Eng': 'Region_Eng', 'East__X_': 'TextEdit', 'North__Y_': 'TextEdit', 'Image path': 'ExternalResource', });
 lyr_Church_7.set('fieldImages', {'fid': 'TextEdit', 'id': 'TextEdit', 'imges': 'ExternalResource', 'Image path': 'ExternalResource', });
 lyr_Building_0.set('fieldLabels', {'fid': 'no label', 'OBJECTID': 'no label', 'LayerName_': 'no label', 'LayerNam_1': 'no label', 'YearOfCapt': 'no label', 'ValueName_': 'no label', 'ValueNam_1': 'no label', 'CommunityN': 'no label', 'Communit_1': 'no label', 'Governorat': 'no label', 'Governor_1': 'no label', 'Ref_MOLG': 'no label', 'Ref_B': 'no label', 'Communit_2': 'no label', 'Communit_3': 'no label', 'Governor_2': 'no label', 'Governor_3': 'no label', 'SHAPE_Leng': 'no label', 'SHAPE_Area': 'no label', });
 lyr_Jointplanning_1.set('fieldLabels', {'fid': 'no label', 'OBJECTID': 'no label', 'LayerName_': 'no label', 'LayerNam_1': 'no label', 'CommunityN': 'no label', 'Communit_1': 'no label', 'BelnogsTo_': 'no label', 'Governorat': 'no label', 'Governor_1': 'no label', 'PCBS_CO': 'no label', 'Population': 'no label', 'Classifica': 'no label', 'Rank': 'no label', 'Joint_Plan': 'no label', 'Area_Land_': 'no label', 'Communit_2': 'no label', 'Communit_3': 'no label', 'Governor_2': 'no label', 'Governor_3': 'no label', 'AreaText_a': 'no label', 'AreaText_E': 'no label', 'Shape_Leng': 'no label', 'Shape_Area': 'no label', });
